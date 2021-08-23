@@ -21,30 +21,27 @@ Note: **Using the links provided here help to support these types of projects. T
 
 ## Packages -- the following packages and libraries are used (download and install):
 **ESP8266**
-&lt;ESP8266WiFi.h&gt;
 
-&lt;ESP8266WebServer.h&gt;
+- &lt;ESP8266WiFi.h&gt;
+- &lt;ESP8266WebServer.h&gt;
+- &lt;ESP8266HTTPClient.h&gt;
+- &lt;WiFiClientSecure.h&gt;
+- &lt;ESP8266SSDP.h&gt;
+- &lt;Updater.h&gt;//for update firmware and SPIFFS
+- &lt;FS.h&gt;
+- &lt;ArduinoJson.h&gt;        //https://github.com/bblanchon/ArduinoJson.git
+- "RTClib.h" //https://github.com/adafruit/RTClib
+- "ESPTimeFunc.h" https://github.com/Lightwell-bg/ESPTimeFunc
+- "NetCrtESP.h" https://github.com/Lightwell-bg/NetCrtESP
 
-&lt;ESP8266HTTPClient.h&gt;
-
-&lt;WiFiClientSecure.h&gt;
-
-&lt;ESP8266SSDP.h&gt;
-
-&lt;Updater.h&gt;//for update firmware and SPIFFS
-
-&lt;FS.h&gt;
-
-&lt;ArduinoJson.h&gt;        //https://github.com/bblanchon/ArduinoJson.git
-"RTClib.h" //https://github.com/adafruit/RTClib
-"ESPTimeFunc.h" https://github.com/Lightwell-bg/ESPTimeFunc
-"NetCrtESP.h" https://github.com/Lightwell-bg/NetCrtESP
 **Arduino Nano**
-&lt;DMD2.h&gt;
-&lt;EEPROM.h&gt;
-&lt;avr/wdt.h&gt; //Interrupt
-&lt;SoftwareSerial.h&gt;
-&lt;TimeLib.h&gt; //https://github.com/PaulStoffregen/Time Michael Margolis
+
+- &lt;DMD2.h&gt;
+- &lt;EEPROM.h&gt;
+- &lt;avr/wdt.h&gt; //Interrupt
+- &lt;SoftwareSerial.h&gt;
+- &lt;TimeLib.h&gt; //https://github.com/PaulStoffregen/Time Michael Margolis
+
 
 ## Initial Configuration
 Starting with version 2.0 editing the config.h file is optional. All API Keys are now managed in the Web Interface It is not required to edit the config.h file before loading and running the code.
