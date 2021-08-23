@@ -17,3 +17,5 @@ Power supply 5V  – $8 from Aliexpress [http://got.by/4ekh09](http://got.by/4ek
 Note: **Using the links provided here help to support these types of projects. Thank you for the support.**
 
 ## Wiring for the Wemos D1 Mini and Arduino Nano to the LED Matrix Display
+## Wiring for the Wemos D1 Mini and Arduino Nano to the LED Matrix Display
+[![](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/2021-08-23_16-40-08.png)](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/2021-08-23_16-40-08.png)
