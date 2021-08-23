@@ -22,12 +22,19 @@ Note: **Using the links provided here help to support these types of projects. T
 ## Packages -- the following packages and libraries are used (download and install):
 **ESP8266**
 &lt;ESP8266WiFi.h&gt;
+
 &lt;ESP8266WebServer.h&gt;
+
 &lt;ESP8266HTTPClient.h&gt;
+
 &lt;WiFiClientSecure.h&gt;
+
 &lt;ESP8266SSDP.h&gt;
+
 &lt;Updater.h&gt;//for update firmware and SPIFFS
+
 &lt;FS.h&gt;
+
 &lt;ArduinoJson.h&gt;        //https://github.com/bblanchon/ArduinoJson.git
 "RTClib.h" //https://github.com/adafruit/RTClib
 "ESPTimeFunc.h" https://github.com/Lightwell-bg/ESPTimeFunc
@@ -53,11 +60,14 @@ For Wi-Fi network connection please input its SSID and password.  After successf
 
 ## Donation or Tip
 Please do not feel obligated, but donations and tips are warmly welcomed. I have added the donation button at the request of a few people that wanted to contribute and show appreciation. Thank you, and enjoy the application and project.
-`<form action="https://www.paypal.com/donate" method="post" target="_top">
+
+<form action="https://www.paypal.com/donate" method="post" target="_top">
 <input type="hidden" name="hosted_button_id" value="7A5NNR3623WZ2" />
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
 <img alt="" border="0" src="https://www.paypal.com/en_BG/i/scr/pixel.gif" width="1" height="1" />
-</form>`
+</form>
+
+
 Or -- you can buy me something from our store: [https://diy.led-lightwell.eu/](https://diy.led-lightwell.eu/ "https://diy.led-lightwell.eu/")
 
 ## Contributors
