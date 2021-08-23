@@ -1,0 +1,236 @@
+const char P_time[] PROGMEM =  R"=====(
+<html>
+    <head>
+        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+        <meta http-equiv = "Content-type" content = "text/html; charset=utf-8">
+        <title>Informer_clock_weath на ESP8266</title>
+        <link rel="icon" href="/img/favicon.png" type="images/png">
+        <link rel = "stylesheet" type = "text/css" href = "/style.css">
+        <script type = "text/javascript" src = "/function.js"></script>
+        <script type = "text/javascript">
+            function set_time_zone(submit) {
+                server = "/TimeZone?timezone=" + val('timezone') + "&isDayLightSaving=" + val_sw('isDayLightSaving');
+                send_request(submit,server);
+				//load_time(submit);
+				load();
+				alert("Ok");
+            }		
+            function set_ntp(submit) {
+                server = "/setntpserver?ntpserver=" + val('ntpserver') + "&use_sync=" + val_sw('use_sync');
+                send_request(submit,server);
+				//load_time(submit);
+				alert("Ok");
+				window.location.reload();
+            }
+			function set_new_time(submit, texts){
+				if (confirm(texts)) {
+					server = "/TimeNew?time_h="+val('time_h')+"&time_m="+val('time_m')+"&time_s="+val('time_s');
+					server += "&date_day=" + val('date_day') + "&date_month=" + val('date_month') + "&date_year=" + val('date_year');
+					send_request(submit,server);
+					//load_time(submit);
+					alert("Ok");
+					window.location.reload();
+					return true;
+				} else {
+					return false;
+				}
+			}  
+            function set_ntp_auto(submit) {
+                var set_date = new Date();
+                var gmtHours = -set_date.getTimezoneOffset()/60 - (val_sw('isDayLightSaving'));
+                document.getElementById('timezone').value = gmtHours;
+				server = "/TimeZone?timezone=" + val('timezone') + "&isDayLightSaving=" + val_sw('isDayLightSaving');
+                send_request(submit,server);
+				//load_time(submit);
+				load();
+				alert("Ok");
+            }
+            function sync_time(submit) {
+                server = "/Time";
+                send_request(submit,server);
+				//load_time(submit);
+				load();
+				alert("Ok");
+            }	
+            function set_alarm(submit) {
+                server = "/setalarm?alarm1_h=" + val('alarm1_h') + "&alarm1_m=" + val('alarm1_m') + "&alarm1_stat=" + val('alarm1_stat');
+				server += "&alarm2_h=" + val('alarm2_h') + "&alarm2_m=" + val('alarm2_m') + "&alarm2_stat=" + val('alarm2_stat');
+                send_request(submit,server);
+				alert("Ok");
+            }					
+        </script>
+       
+    </head>
+    <body onload = "load();">
+        <header>
+            <span class="opt_cn">{{modelName}}_</span><span id="ver">{{nVersion}}</span><br>
+            <span class="opt_cn">IP_</span>
+            <span id="ip">{{ip}}</span><br>
+            <span class="opt_cn">Time on ESP:</span>
+            <span id="time">{{time}}</span> 
+        </header>       
+        <central-unit>
+            <div class="menu_unit">
+                <a class="link__img" href="/index.html"><span class="ico__text">Screen</span></a>			
+                <a class="link__img" href="/wifi.html"><span class="ico__text">Wifi</span></a>
+                <a class="link__img" href="/time.html"><span class="ico__text">Time</span></a>
+                <a class="link__img" href="/help.html"><span class="ico__text">Help</span></a>
+                <a class="link__img" href="#"><span class="ico__text" onclick="restart(this,'ResetESP?');">Restart</span></a>
+            </div>
+            <titles>
+                <div class="opt_cn" id="P_time_title">TIME SETTING</div>
+            </titles>
+            <div id="main_unit">				
+                <span class="opt_cn" id="P_time_timeZone">Choose a time zone</span>
+                <select id = "timezone">
+                    <option value="-12"> (GMT) -12 </option>
+                    <option value="-11"> (GMT) -11 </option>
+                    <option value="-10"> (GMT) -10 </option>
+                    <option value="-9" > (GMT) -09 </option>
+                    <option value="-8" > (GMT) -08 </option>
+                    <option value="-7" > (GMT) -07 </option>
+                    <option value="-6" > (GMT) -06 </option>
+                    <option value="-5" > (GMT) -05 </option>
+                    <option value="-4" > (GMT) -04 </option>
+                    <option value="-3" > (GMT) -03 </option>
+                    <option value="-2" > (GMT) -02 </option>
+                    <option value="-1" > (GMT) -01 </option>
+                    <option value="0"  > (GMT) +00 </option>
+                    <option value="1"  > (GMT) +01 </option>
+                    <option value="2"  > (GMT) +02 </option>
+                    <option value="3"  > (GMT) +03 </option>
+                    <option value="4"  > (GMT) +04 </option>
+                    <option value="5"  > (GMT) +05 </option>
+                    <option value="6"  > (GMT) +06 </option>
+                    <option value="7"  > (GMT) +07 </option>
+                    <option value="8"  > (GMT) +08 </option>
+                    <option value="9"  > (GMT) +09 </option>
+                    <option value="10" > (GMT) +10 </option>
+                    <option value="11" > (GMT) +11 </option>
+                    <option value="12" > (GMT) +12 </option>
+                </select>
+                <br>
+                <label class="switch"><span class="opt_cn" id="P_time_daylight">Daylight Saving Time</span>
+                    <input type="checkbox" id="isDayLightSaving">
+                    <span class="switch-btn"></span>
+                </label>
+                <br>
+                <span class="save_booton" id="save" onclick="set_time_zone(this);">Save</span>
+                <br>				
+			
+                <paragraph><span class="opt_cn" id="P_time_set">Set time</span></paragraph>
+                <center>
+					<table id="table__font">
+                        <tr>
+                            <td><span class="opt_cn" id="P_time_hour">Hour</span></td>
+                            <td><span class="opt_cn" id="P_time_minute">Minute</span></td>
+                            <td><span class="opt_cn" id="P_time_sec">Second</span></td>
+                        </tr>
+						<tr>
+							<td><input type="text" class="field form-control" id="time_h" value="{{time_h}}" pattern="[0-9]{1,3}"></td>
+							<td><input type="text" class="field form-control" id="time_m" value="{{time_m}}" pattern="[0-9]{1,3}"></td>
+							<td><input type="text" class="field form-control" id="time_s" value="{{time_s}}" pattern="[0-9]{1,3}"></td>							
+						</tr>		
+					</table>
+					<paragraph><span class="opt_cn" id="P_date_set">Set date</span></paragraph>
+						<table id="table__font">
+							<tr>
+								<td><span class="opt_cn" id="P_time_day">Day</span></td>
+								<td><span class="opt_cn" id="P_time_month">Month</span></td>
+								<td><span class="opt_cn" id="P_time_year">Year</span></td>
+							</tr>
+							<tr>
+								<td>
+									<select id="date_day">
+										<option value = "1"> 1 </option>
+										<option value = "2"> 2 </option>
+										<option value = "3"> 3 </option>
+										<option value = "4"> 4 </option>
+										<option value = "5"> 5 </option>
+										<option value = "6"> 6 </option>
+										<option value = "7"> 7 </option>    
+										<option value = "8"> 8 </option>
+										<option value = "9"> 9 </option>
+										<option value = "10"> 10 </option>
+										<option value = "11"> 11 </option>
+										<option value = "12"> 12 </option>
+										<option value = "13"> 13 </option>
+										<option value = "14"> 14 </option>
+										<option value = "15"> 15 </option>
+										<option value = "16"> 16 </option>
+										<option value = "17"> 17 </option>
+										<option value = "18"> 18 </option>
+										<option value = "19"> 19 </option>
+										<option value = "20"> 20 </option>
+										<option value = "21"> 21 </option>
+										<option value = "22"> 22 </option>
+										<option value = "23"> 23 </option>
+										<option value = "24"> 24 </option>
+										<option value = "25"> 25 </option>
+										<option value = "26"> 26 </option>
+										<option value = "27"> 27 </option>    
+										<option value = "28"> 28 </option>
+										<option value = "29"> 29 </option>
+										<option value = "30"> 30 </option>
+										<option value = "31"> 31 </option>
+									</select>
+								</td>
+								<td>
+									<select id="date_month">
+										<option value = "1"> 1 </option>
+										<option value = "2"> 2 </option>
+										<option value = "3"> 3 </option>
+										<option value = "4"> 4 </option>
+										<option value = "5"> 5 </option>
+										<option value = "6"> 6 </option>
+										<option value = "7"> 7 </option>    
+										<option value = "8"> 8 </option>
+										<option value = "9"> 9 </option>
+										<option value = "10"> 10 </option>
+										<option value = "11"> 11 </option>
+										<option value = "12"> 12 </option>
+									</select>
+								</td>
+								<td>
+									<select id="date_year">
+										<option value = "2017"> 2017 </option>
+										<option value = "2018"> 2018 </option>
+										<option value = "2019"> 2019 </option>
+										<option value = "2020"> 2020 </option>
+										<option value = "2021"> 2021 </option>
+										<option value = "2022"> 2022 </option>
+										<option value = "2023"> 2023 </option>
+										<option value = "2024"> 2024 </option>    
+										<option value = "2025"> 2025 </option>
+									</select>
+								</td>								
+							</tr>						
+						</table>
+                <span class="save_booton" id="save1" onclick="set_new_time(this,'Если включена синхонизация с NTP, она будет отключена. Установить время?');">Save</span>
+				
+				</center>
+                <br>			
+			
+                <paragraph><span class="opt_cn" id="P_time_setNTP">The exact NTP time server</span></paragraph>
+                <span class="opt_cn" id="P_time_adressNTP">Enter the NTP server address</span>
+                <input type="text" class="field" id="ntpserver" value="{{ntpserver}}" class="form-control" pattern="[0-9a-zA-Z. ]{1,20}" placeholder="us.pool.ntp.org">
+			    <br>
+                <label class="switch"><span class="opt_cn" id="P_time_usesync">Set synchronization with NTP server</span>
+                    <input type="checkbox" class="checkbox" id="use_sync" name="switch-btn">
+                    <span class="switch-btn"></span>
+                </label>
+                <br>
+                <span class="save_booton" id="save2" onclick="set_ntp(this);">Save</span>
+                <br>
+                 <span class="save_booton" id="P_time_save" onclick="set_ntp_auto(this);">BELT OUT OF PC AND SAVING</span><br>
+				 <span class="save_booton" id="P_time_sync" onclick="sync_time(this);">TIME SYNCHRONIZATION</span>
+            </div>
+            <div class="menu_unit" id="langs">
+                <a><span class="ico__text" onclick="set_lang_f(this, 'EN');">EN</span></a>			
+                <a><span class="ico__text" onclick="set_lang_f(this, 'RU');">RU</span></a>
+                <a><span class="ico__text" onclick="set_lang_f(this, 'BG');">BG</span></a>
+            </div>
+        </central-unit>
+    </body>
+</html>
+)=====";
