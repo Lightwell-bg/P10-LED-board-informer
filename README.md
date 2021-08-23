@@ -54,6 +54,7 @@ You can connect to this access point to select and enter credentials for your ne
 ## Web Interface
 All LED board informer management is carried out using a web browser.  On first power-up, it  will serve a hotspot called **LWSeaTemp**. For clock adjustment and manipulation open a webpage with the **192.168.4.1** address. Within this hotspot you can manually override the time and date, set temperature manually and update software.
 For Wi-Fi network connection please input its SSID and password.  After successful connection LED board informer will begin to receive and transmit information over the Internet. NTP servers are used to get accurate time. To get the current weather and forecast use the service [https://openweathermap.org](https://openweathermap.org "https://openweathermap.org") (you need to register and get an API key). 
+[![](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/wi01.png)](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/wi01.png)[![](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/wi03.png)](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/wi03.png)
 
 ## Donation or Tip
 Please do not feel obligated, but donations and tips are warmly welcomed. I have added the donation button at the request of a few people that wanted to contribute and show appreciation. Thank you, and enjoy the application and project.
@@ -72,3 +73,5 @@ Contributing to this software is warmly welcomed. You can do this basically by f
 When considering making a code contribution, please keep in mind the following goals for the project:
 User should not be required to edit the config.h file to compile and run. This means the feature should be simple enough to manage through the web interface.
 Changes should always support the recommended hardware (links above).
+
+[![](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/t00.jpg)](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/t00.jpg)[![](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/inf6416-01.png)](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/inf6416-01.png)[![](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/pcbst03.jpg)](https://github.com/Lightwell-bg/P10-LED-board-informer/blob/main/images/pcbst03.jpg)
